@@ -30,8 +30,8 @@ class BaseCmdLineTest(CoverageTest):
     defaults = mock.Mock()
     defaults.coverage(
         cover_pylib=None, data_suffix=None, timid=None, branch=None,
-        config_file=True, source=None, include=None, omit=None, debug=None,
-        concurrency=None,
+        config_file=True, source=None, source_pkgs=None, include=None,
+        omit=None, debug=None, concurrency=None,
     )
     defaults.annotate(
         directory=None, ignore_errors=None, include=None, omit=None, morfs=[],

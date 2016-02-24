@@ -117,6 +117,10 @@ class Opts(object):
         '', '--source', action='store', metavar="SRC1,SRC2,...",
         help="A list of packages or directories of code to be measured.",
     )
+    source_pkg = optparse.make_option(
+        '', '--source-pkg', action='store', metavar="SRCPKG1,SRCPKG2,...",
+        help="A list of packages to be measured.",
+    )
     timid = optparse.make_option(
         '', '--timid', action='store_true',
         help=(
@@ -165,6 +169,7 @@ class CoverageOptionParser(optparse.OptionParser, object):
             show_missing=None,
             skip_covered=None,
             source=None,
+            source_pkg=None,
             timid=None,
             title=None,
             version=None,
@@ -352,6 +357,7 @@ CMDS = {
             Opts.pylib,
             Opts.parallel_mode,
             Opts.source,
+            Opts.source_pkg,
             Opts.timid,
             ] + GLOBAL_ARGS,
         usage="[options] <pyfile> [program options]",
@@ -464,6 +470,7 @@ class CoverageScript(object):
             branch=options.branch,
             config_file=options.rcfile,
             source=source,
+            source_pkgs=options.source_pkg,
             omit=omit,
             include=include,
             debug=debug,

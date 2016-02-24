@@ -59,7 +59,7 @@ class Coverage(object):
     def __init__(
         self, data_file=None, data_suffix=None, cover_pylib=None,
         auto_data=False, timid=None, branch=None, config_file=True,
-        source=None, omit=None, include=None, debug=None,
+        source=None, source_pkgs=None, omit=None, include=None, debug=None,
         concurrency=None,
     ):
         """
@@ -153,8 +153,8 @@ class Coverage(object):
         self.config.from_args(
             data_file=data_file, cover_pylib=cover_pylib, timid=timid,
             branch=branch, parallel=bool_or_none(data_suffix),
-            source=source, omit=omit, include=include, debug=debug,
-            concurrency=concurrency,
+            source=source, source_pkgs=source_pkgs, omit=omit, include=include,
+            debug=debug, concurrency=concurrency,
             )
 
         self._debug_file = None
@@ -232,6 +232,10 @@ class Coverage(object):
                 self.source.append(files.canonical_filename(src))
             else:
                 self.source_pkgs.append(src)
+
+        # The soure packages argument is always package names.
+        if self.config.source_pkg:
+            self.source_pkgs.extend(self.config.source_pkg)
 
         self.omit = prep_patterns(self.config.omit)
         self.include = prep_patterns(self.config.include)

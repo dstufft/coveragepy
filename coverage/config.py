@@ -162,6 +162,7 @@ class CoverageConfig(object):
         self.parallel = False
         self.plugins = []
         self.source = None
+        self.source_pkg = None
         self.timid = False
 
         # Defaults for [report]
@@ -277,6 +278,7 @@ class CoverageConfig(object):
         ('parallel', 'run:parallel', 'boolean'),
         ('plugins', 'run:plugins', 'list'),
         ('source', 'run:source', 'list'),
+        ('source_pkg', 'run:source_pkg', 'list'),
         ('timid', 'run:timid', 'boolean'),
 
         # [report]
